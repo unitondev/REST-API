@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Application.Api.Data;
+using Application.Api.Dtos;
 using Application.Api.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Api.Controllers
@@ -11,25 +13,31 @@ namespace Application.Api.Controllers
     public class HomeController : ControllerBase
     {
         private readonly IAppRepository _repository;
+        private IMapper _mapper;
 
-        public HomeController(IAppRepository repository)
+        public HomeController(IAppRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         [HttpGet("")]
-        public ActionResult<IEnumerable<Person>> GetPersons()
+        public ActionResult<IEnumerable<PersonViewDto>> GetPersons()
         {
-            var personsList = _repository.GetPersons();
+            var personsItems = _repository.GetPersons();
 
-            return Ok(personsList);
+            return Ok(_mapper.Map<IEnumerable<PersonViewDto>>(personsItems));
         }
 
         [HttpGet("{id}", Name = "GetPersonById")]
-        public ActionResult<Person> GetPersonById(int id)
+        public ActionResult<PersonViewDto> GetPersonById(int id)
         {
             var personItem = _repository.GetPersonById(id);
 
-            return Ok(personItem);
+            if (personItem == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<PersonViewDto>(personItem));
         }
     }
 }

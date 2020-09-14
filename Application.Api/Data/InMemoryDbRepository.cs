@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Application.Api.Models;
 
@@ -13,6 +14,11 @@ namespace Application.Api.Data
             _dbContext = dbContext;
         }
         
+        public bool SaveChanges()
+        {
+            return (_dbContext.SaveChanges() >= 0);
+        }
+        
         public IEnumerable<Person> GetPersons()
         {
             return _dbContext.Persons.ToList();
@@ -21,6 +27,16 @@ namespace Application.Api.Data
         public Person GetPersonById(int id)
         {
             return _dbContext.Persons.FirstOrDefault(person => person.Id == id);
+        }
+
+        public void CreatePerson(Person person)
+        {
+            if (person == null)
+            {
+                throw new ArgumentNullException(nameof(person));
+            }
+            
+            _dbContext.Persons.Add(person);
         }
     }
 }

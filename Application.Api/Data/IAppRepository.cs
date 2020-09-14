@@ -5,7 +5,10 @@ namespace Application.Api.Data
 {
     public interface IAppRepository
     {
+        bool SaveChanges();
+        
         IEnumerable<Person> GetPersons();
         Person GetPersonById(int personId);
+        void CreatePerson(Person person);
     }
 }
