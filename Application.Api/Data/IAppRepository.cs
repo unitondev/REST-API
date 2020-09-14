@@ -11,5 +11,6 @@ namespace Application.Api.Data
         Person GetPersonById(int personId);
         void CreatePerson(Person person);
         void UpdatePerson(Person person);
+        void DeletePerson(Person person);
     }
 }

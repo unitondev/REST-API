@@ -43,5 +43,15 @@ namespace Application.Api.Data
         {
             //Empty
         }
+        
+        public void DeletePerson(Person person)
+        {
+            if (person == null)
+            {
+                throw new ArgumentNullException(nameof(person));
+            }
+
+            _dbContext.Persons.Remove(person);
+        }
     }
 }

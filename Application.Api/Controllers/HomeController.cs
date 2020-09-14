@@ -102,6 +102,21 @@ namespace Application.Api.Controllers
             
             return NoContent();
         }
+        
+        [HttpDelete("{id}")]
+        public ActionResult DeletePerson(int id)
+        {
+            var personModelFromRepos = _repository.GetPersonById(id);
+            if (personModelFromRepos == null)
+            {
+                return NotFound();
+            }
+            
+            _repository.DeletePerson(personModelFromRepos);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
 
     }
 }
