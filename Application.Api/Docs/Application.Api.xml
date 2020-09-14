@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Application.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Application.Api.Controllers.HomeController.GetPersons">
+            <summary>
+            Получить модели
+            </summary>
+            <response code="200">Модели найдены</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="404">Модели не найдены</response>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Api.Controllers.HomeController.GetPersonById(System.Int32)">
+            <summary>
+            Получить модель по personId
+            </summary>
+            <param name="personId">Id модели</param>
+            <response code="200">Модель найдена</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="404">Модель не найдена</response>
+        </member>
+        <member name="M:Application.Api.Controllers.HomeController.CreatePerson(Application.BL.Dtos.PersonDtos.PersonCreateDto)">
+            <summary>
+            Создать модель
+            </summary>
+            <param name="personCreateDto">Создаваемая модель</param>
+            <response code="201">Модель успешно создана</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="405">Метод запроса известен, но отключен и не может быть использован</response>
+        </member>
+        <member name="M:Application.Api.Controllers.HomeController.UpdatePerson(System.Int32,Application.BL.Dtos.PersonDtos.PersonUpdateDto)">
+            <summary>
+            Заменить модель
+            </summary>
+            <param name="personId">Id модели</param>
+            <param name="personUpdateDto">Новая модель</param>
+            <response code="204">Модель заменена</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="404">Модель не найдена</response>
+        </member>
+        <member name="M:Application.Api.Controllers.HomeController.PatchPerson(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Application.BL.Dtos.PersonDtos.PersonUpdateDto})">
+            <summary>
+            Редактировать модель
+            </summary>
+            <param name="personId">Id модели</param>
+            <param name="jsonPatchDocument">Json с операцией, путем и новым значением</param>
+            <response code="204">Модель отредактирована</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="404">Модель не найдена</response>
+        </member>
+        <member name="M:Application.Api.Controllers.HomeController.DeletePerson(System.Int32)">
+            <summary>
+            Удалить модель
+            </summary>
+            <param name="personId">Id модели</param>
+            <response code="204">Модель удалена</response>
+            <response code="400">Некорректный запрос</response>
+            <response code="404">Модель не найдена</response>
+        </member>
+    </members>
+</doc>
