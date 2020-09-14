@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Application.Api.Models;
+using Application.Domain.Models;
 
-namespace Application.Api.Data
+namespace Application.BL.Common.Interfaces
 {
     public interface IAppRepository
     {

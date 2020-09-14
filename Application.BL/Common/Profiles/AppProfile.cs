@@ -1,4 +1,5 @@
-﻿using Application.BL.Person;
+﻿using Application.BL.Dtos.PersonDtos;
+using Application.Domain.Models;
 using AutoMapper;
 
 namespace Application.BL.Common.Profiles

@@ -1,7 +1,7 @@
-﻿using Application.Api.Models;
+﻿using Application.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Api.Data
+namespace Application.DAL
 {
     public class ApplicationDbContext : DbContext
     {

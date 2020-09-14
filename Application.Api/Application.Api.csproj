@@ -26,10 +26,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Application.BL\Application.BL.csproj" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Profiles" />
-    </ItemGroup>
 
 
 </Project>

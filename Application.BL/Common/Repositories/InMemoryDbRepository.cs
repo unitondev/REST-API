@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Application.Api.Models;
+using Application.BL.Common.Interfaces;
+using Application.DAL;
+using Application.Domain.Models;
 
-namespace Application.Api.Data
+namespace Application.BL.Common.Repositories
 {
     public class InMemoryDbRepository : IAppRepository
     {

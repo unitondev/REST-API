@@ -1,12 +1,12 @@
 using System;
-using Application.Api.Models;
+using Application.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Api.Data
+namespace Application.DAL.SeedData
 {
-    public class DataGenerator
+    public class PersonsSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {

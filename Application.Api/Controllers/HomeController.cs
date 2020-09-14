@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Application.Api.Data;
-using Application.Api.Dtos;
-using Application.Api.Models;
+using System.Security.Permissions;
+using Application.BL.Common.Interfaces;
+using Application.BL.Dtos.PersonDtos;
+using Application.Domain.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ namespace Application.Api.Controllers
         /// <response code="200">Модель найдена</response>
         /// <response code="400">Некорректный запрос</response>
         /// <response code="404">Модель не найдена</response>
-        [HttpGet("{personId}", Name = "GetPersonById")]
+        [HttpGet("{personId}", Name = nameof(GetPersonById))]
         [ProducesResponseType(typeof(PersonViewDto),StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -86,7 +87,8 @@ namespace Application.Api.Controllers
 
             var personView = _mapper.Map<PersonViewDto>(personModel);
             
-            return CreatedAtRoute(nameof(GetPersonById), new {Id = personView.Id}, personView);
+            return CreatedAtRoute(nameof(GetPersonById), new {personId = personView.Id}, personView);
+            //return Ok(personView);
         }
         
         /// <summary>

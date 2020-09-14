@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Application.Api.Data;
 using Application.BL;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +17,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using REST_API.BL;
+using Application.BL;
+using Application.BL.Common.Interfaces;
+using Application.BL.Common.Repositories;
+using Application.DAL;
 
 namespace Application.Api
 {
@@ -33,8 +35,7 @@ namespace Application.Api
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(opt =>
-                opt.UseInMemoryDatabase("InMemory"));
+            services.AddDataAccessLayer();
             
             services.AddBusinessLogic();
             
@@ -42,9 +43,7 @@ namespace Application.Api
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });;
-
-            services.AddScoped<IAppRepository, InMemoryDbRepository>();
-
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

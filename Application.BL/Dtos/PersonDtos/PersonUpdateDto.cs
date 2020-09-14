@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Application.BL.Person
+namespace Application.BL.Dtos.PersonDtos
 {
     public class PersonUpdateDto
     {
