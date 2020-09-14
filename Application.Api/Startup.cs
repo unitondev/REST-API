@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Api.Data;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,8 @@ namespace Application.Api
         {
             services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseInMemoryDatabase("InMemory"));
+            
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
             services.AddControllers();
 
