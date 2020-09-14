@@ -3,6 +3,7 @@ using Application.Api.Data;
 using Application.Api.Dtos;
 using Application.Api.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Api.Controllers
@@ -73,5 +74,34 @@ namespace Application.Api.Controllers
             
             return NoContent();
         }
+        
+        [HttpPatch("{id}")]
+        public ActionResult PatchPerson(int id, JsonPatchDocument<PersonUpdateDto> jsonPatchDocument)
+        {
+            var personModelFromRepos = _repository.GetPersonById(id);
+            if (personModelFromRepos == null)
+            {
+                return NotFound();
+            }
+
+            var personToPatch = _mapper.Map<PersonUpdateDto>(personModelFromRepos);
+            
+            jsonPatchDocument.ApplyTo(personToPatch, ModelState);
+            
+            if (!TryValidateModel(personToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+            
+            _mapper.Map(personToPatch, personModelFromRepos);
+            
+            //for maintaining 
+            _repository.UpdatePerson(personModelFromRepos);
+            
+            _repository.SaveChanges();
+            
+            return NoContent();
+        }
+
     }
 }

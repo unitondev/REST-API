@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace Application.Api
 {
@@ -32,7 +33,10 @@ namespace Application.Api
             
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });;
 
             services.AddScoped<IAppRepository, InMemoryDbRepository>();
         }
