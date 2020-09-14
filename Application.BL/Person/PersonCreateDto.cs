@@ -1,8 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Api.Dtos
+namespace Application.BL.Person
 {
-    public class PersonUpdateDto
+    public class PersonCreateDto
     {
         [MaxLength(20)]
         [Required]

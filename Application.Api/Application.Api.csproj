@@ -22,6 +22,14 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.8" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Application.BL\Application.BL.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Profiles" />
+    </ItemGroup>
 
 
 </Project>

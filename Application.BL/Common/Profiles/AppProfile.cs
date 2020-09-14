@@ -1,8 +1,7 @@
-﻿using Application.Api.Dtos;
-using Application.Api.Models;
+﻿using Application.BL.Person;
 using AutoMapper;
 
-namespace Application.Api.Profiles
+namespace Application.BL.Common.Profiles
 {
     public class AppProfile : Profile
     {

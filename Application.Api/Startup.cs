@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Application.Api.Data;
+using Application.BL;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using REST_API.BL;
 
 namespace Application.Api
 {
@@ -34,7 +36,7 @@ namespace Application.Api
             services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseInMemoryDatabase("InMemory"));
             
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddBusinessLogic();
             
             services.AddControllers().AddNewtonsoftJson(options =>
             {

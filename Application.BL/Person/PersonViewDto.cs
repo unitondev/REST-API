@@ -1,4 +1,4 @@
-﻿namespace Application.Api.Dtos
+﻿namespace Application.BL.Person
 {
     public class PersonViewDto
     {
