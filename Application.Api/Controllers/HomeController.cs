@@ -39,5 +39,17 @@ namespace Application.Api.Controllers
             }
             return Ok(_mapper.Map<PersonViewDto>(personItem));
         }
+        
+        [HttpPost]
+        public ActionResult<PersonViewDto> CreatePerson(PersonCreateDto personCreateDto)
+        {
+            var personModel = _mapper.Map<Person>(personCreateDto);
+            _repository.CreatePerson(personModel);
+            _repository.SaveChanges();
+
+            var personView = _mapper.Map<PersonViewDto>(personModel);
+            
+            return CreatedAtRoute(nameof(GetPersonById), new {Id = personView.Id}, personView);
+        }
     }
 }
