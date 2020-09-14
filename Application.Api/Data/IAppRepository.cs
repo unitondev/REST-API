@@ -10,5 +10,6 @@ namespace Application.Api.Data
         IEnumerable<Person> GetPersons();
         Person GetPersonById(int personId);
         void CreatePerson(Person person);
+        void UpdatePerson(Person person);
     }
 }

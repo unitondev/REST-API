@@ -10,6 +10,7 @@ namespace Application.Api.Profiles
         {
             CreateMap<Person, PersonViewDto>();
             CreateMap<PersonCreateDto, Person>();
+            CreateMap<PersonUpdateDto, Person>();
         }
     }
 }

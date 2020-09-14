@@ -51,5 +51,27 @@ namespace Application.Api.Controllers
             
             return CreatedAtRoute(nameof(GetPersonById), new {Id = personView.Id}, personView);
         }
+        
+        [HttpPut("{personId}")]
+        public ActionResult UpdatePerson(int personId, PersonUpdateDto personUpdateDto)
+        {
+            //personModelFromRepo - the object to be replaced. Type == Person.
+            //personUpdateDto - new object. Map to Person.
+            var personModelFromRepos = _repository.GetPersonById(personId);
+            if (personModelFromRepos == null)
+            {
+                return NotFound();
+            }
+            
+            //updated personModelFromRepos, changes are being tracked via dbContext
+            _mapper.Map(personUpdateDto, personModelFromRepos);
+            
+            //for maintaining 
+            _repository.UpdatePerson(personModelFromRepos);
+            
+            _repository.SaveChanges();
+            
+            return NoContent();
+        }
     }
 }

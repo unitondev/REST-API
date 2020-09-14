@@ -38,5 +38,10 @@ namespace Application.Api.Data
             
             _dbContext.Persons.Add(person);
         }
+
+        public void UpdatePerson(Person person)
+        {
+            //Empty
+        }
     }
 }
